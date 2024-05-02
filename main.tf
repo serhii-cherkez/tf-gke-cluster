@@ -1,3 +1,10 @@
+terraform {
+  backend "gcs" {
+    bucket = "tf_gke_cluster_backend"
+    prefix = "terraform/state"
+  }
+}
+
 module "gke_cluster" {
   source           = "github.com/serhii-cherkez/tf-google-gke-cluster"
   GOOGLE_REGION    = var.GOOGLE_REGION
