@@ -1,3 +1,4 @@
+### GKE
 variable "GOOGLE_PROJECT" {
   type    = string
   default = "prometheus-devops-course"
@@ -21,4 +22,15 @@ variable "GKE_CLUSTER_NAME" {
 variable "GKE_POOL_NAME" {
   type    = string
   default = "gke-pool-demo"
+}
+
+### TLS
+variable "algorithm" {
+  type        = string
+  default     = "ECDSA"
+}
+
+variable "ecdsa_curve" {
+  type        = string
+  default     = "P256"
 }

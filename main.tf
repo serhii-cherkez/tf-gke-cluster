@@ -5,6 +5,20 @@ terraform {
   }
 }
 
+module "tls" {
+  source = "github.com/serhii-cherkez/tf-hashicorp-tls-keys"
+  algorithm        = "RSA"
+  ecdsa_curve      = "P521"
+}
+
+module "github" {
+  source = "https://github.com/serhii-cherkez/tf-github-repository"
+}
+
+module "flux" {
+  source = "https://github.com/serhii-cherkez/tf-fluxcd-flux-bootstrap"
+}
+
 module "gke_cluster" {
   source           = "github.com/serhii-cherkez/tf-google-gke-cluster"
   GOOGLE_REGION    = var.GOOGLE_REGION
