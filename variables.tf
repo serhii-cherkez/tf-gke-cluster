@@ -1,4 +1,3 @@
-### GKE
 variable "GOOGLE_PROJECT" {
   type    = string
   default = "prometheus-devops-course"
@@ -24,13 +23,20 @@ variable "GKE_POOL_NAME" {
   default = "gke-pool-demo"
 }
 
-### TLS
-variable "algorithm" {
-  type        = string
-  default     = "ECDSA"
+variable "GITHUB_OWNER" {
+  type = string
 }
 
-variable "ecdsa_curve" {
-  type        = string
-  default     = "P256"
+variable "GITHUB_TOKEN" {
+  type = string
+}
+
+variable "FLUX_GITHUB_REPO" {
+  type = string
+  default = "flux-gitops"
+}
+
+variable "FLUX_GITHUB_TARGET_PATCH" {
+  type = string
+  default = "clusters"
 }
