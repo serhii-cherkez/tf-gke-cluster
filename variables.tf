@@ -32,11 +32,11 @@ variable "GITHUB_TOKEN" {
 }
 
 variable "FLUX_GITHUB_REPO" {
-  type = string
+  type    = string
   default = "flux-gitops"
 }
 
 variable "FLUX_GITHUB_TARGET_PATCH" {
-  type = string
+  type    = string
   default = "clusters"
 }
