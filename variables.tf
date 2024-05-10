@@ -15,12 +15,12 @@ variable "GKE_NUM_NODES" {
 
 variable "GKE_CLUSTER_NAME" {
   type    = string
-  default = "gke-cluster-demo"
+  default = "kbot-gke-cluster"
 }
 
 variable "GKE_POOL_NAME" {
   type    = string
-  default = "gke-pool-demo"
+  default = "kbot-gke-pool"
 }
 
 variable "GITHUB_OWNER" {
@@ -33,7 +33,7 @@ variable "GITHUB_TOKEN" {
 
 variable "FLUX_GITHUB_REPO" {
   type    = string
-  default = "flux-gitops"
+  default = "flux-system"
 }
 
 variable "FLUX_GITHUB_TARGET_PATCH" {
