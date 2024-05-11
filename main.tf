@@ -39,17 +39,17 @@ module "gke_workload_identity" {
   name                = "kustomize-controller"
   namespace           = "flux-system"
   project_id          = var.GOOGLE_PROJECT
-  cluster_name        = "main"
+  cluster_name        = var.GKE_CLUSTER_NAME
   location            = var.GOOGLE_REGION
   annotate_k8s_sa     = true
-  roles               = ["roles/secretmanager.secretVersionAdder", "roles/cloudkms.cryptoKeyEncrypterDecrypter"]
+  roles               = ["roles/cloudkms.cryptoKeyEncrypterDecrypter"]
 }
 
  module "kms" {
    source = "github.com/serhii-cherkez/terraform-google-kms"
    project_id = var.GOOGLE_PROJECT
-   keyring = "sops-flux"
+   keyring = "kbot-sops-flux"
    location = "global"
-   keys = ["sops-key-flux"]
+   keys = ["kbot-sops-key-flux"]
    prevent_destroy = false
  }
