@@ -45,23 +45,24 @@ module "gke_workload_identity" {
   roles               = ["roles/cloudkms.cryptoKeyEncrypterDecrypter"]
 }
 
- module "kms" {
-   source = "github.com/serhii-cherkez/terraform-google-kms"
-   project_id = var.GOOGLE_PROJECT
-   keyring = "kbot-sops-flux"
-   location = "global"
-   keys = ["kbot-sops-key-flux"]
-   prevent_destroy = false
- }
+module "kms" {
+  source          = "github.com/serhii-cherkez/terraform-google-kms"
+  project_id      = var.GOOGLE_PROJECT
+  keyring         = "kbot-sops-flux"
+  location        = "global"
+  keys            = ["kbot-sops-key-flux"]
+  prevent_destroy = false
+}
 
- module "workload_identity" {
-   source = "github.com/serhii-cherkez/tf-google-iam-workload-identity"
-   project_id                  = var.GOOGLE_PROJECT
-   git_repo                    = "https://github.com/serhii-cherkez/kbot"
-   identity_pool_name          = "Github Actions Pool"
-   identity_pool_id            = "github-actions-pool"
-   identity_pool_provider_name = "Github Actions Provider"
-   identity_pool_provider_id   = "github-actions-provider"
-   google_service_account_name = "Github Actions Service Account"
-   google_service_account_id   = "github-actions-service-account"
- }
+module "workload_identity" {
+  source                      = "github.com/serhii-cherkez/tf-google-iam-workload-identity"
+  project_id                  = var.GOOGLE_PROJECT
+  git_repo                    = "serhii-cherkez/flux-system"
+  identity_pool_name          = "Github Actions Pool"
+  identity_pool_id            = "github-actions-pool"
+  identity_pool_provider_name = "Github Actions Provider"
+  identity_pool_provider_id   = "github-actions-provider"
+  google_service_account_name = "Github Actions Service Account"
+  google_service_account_id   = "github-actions-service-account"
+  iam_member_role = ["roles/secretmanager.secretAccessor", "roles/iam.serviceAccountTokenCreator"]
+}
