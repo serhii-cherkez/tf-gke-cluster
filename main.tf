@@ -64,5 +64,4 @@ module "workload_identity" {
   identity_pool_provider_id   = "github-actions-provider"
   google_service_account_name = "Github Actions Service Account"
   google_service_account_id   = "github-actions-service-account"
-  iam_member_role = ["roles/secretmanager.secretAccessor", "roles/iam.serviceAccountTokenCreator"]
 }
